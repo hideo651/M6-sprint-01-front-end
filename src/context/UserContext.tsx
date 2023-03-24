@@ -9,6 +9,7 @@ interface iUserContextProps {
 interface IuserContext {
   registerUser: (data: IuserRegister) => void;
   loginUser: (data: IloginUser) => void;
+  getUser: () => void;
 }
 
 interface IuserRegister {
@@ -51,8 +52,24 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       console.log(error.response.data);
     }
   };
+
+  const getUser = async (): Promise<void> => {
+    const token = localStorage.getItem("@userToken:token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+
+        const response = await Api.get("/users");
+        console.log(response.data);
+      } catch (error: any) {
+        console.log(error.response.data);
+      }
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ registerUser, loginUser }}>
+    <UserContext.Provider value={{ registerUser, loginUser, getUser }}>
       {children}
     </UserContext.Provider>
   );
