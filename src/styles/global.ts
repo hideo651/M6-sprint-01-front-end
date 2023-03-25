@@ -5,8 +5,13 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: 0;
-    background-color: #282c34;
+    /* background-color: #282c34; */
     color: white;
+}
+
+body{
+    background-color: #282c34;
+  
 }
 
 button{
@@ -20,6 +25,8 @@ li{
 a{
     cursor: pointer;
 }
+
+
 
 
 `;

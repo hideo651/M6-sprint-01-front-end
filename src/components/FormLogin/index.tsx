@@ -29,7 +29,7 @@ export const FormLogin = () => {
 
   return (
     <>
-      <h1>Faça o Login de usuário</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit(loginUser)}>
         <label htmlFor="email">Email</label>
         <input
