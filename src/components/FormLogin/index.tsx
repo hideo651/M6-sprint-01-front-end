@@ -15,10 +15,6 @@ const schema = yup.object({
 });
 
 export const FormLogin = () => {
-  const teste = (data: IuserLogin) => {
-    console.log(data);
-  };
-
   const {
     register,
     handleSubmit,

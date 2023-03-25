@@ -6,5 +6,6 @@ export const Header = styled.header`
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    color: white;
   }
 `;

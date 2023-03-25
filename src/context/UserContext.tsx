@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { Api } from "../services/Api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -50,6 +51,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       navigate("/dashboard");
     } catch (error: any) {
       console.log(error.response.data);
+      toast.error(`${error.response.data.message}`);
     }
   };
 

@@ -47,12 +47,14 @@ export const FormRegister = () => {
   return (
     <>
       <h1>Registro de usuário</h1>
+
       <form onSubmit={handleSubmit(registerUser)}>
         <label htmlFor="name">Nome</label>
         <input
           type="text"
           id="name"
           placeholder="Digite aqui o seu nome"
+          className="inputRegister"
           {...register("name")}
         />
         <p>{errors.name?.message}</p>
@@ -61,6 +63,7 @@ export const FormRegister = () => {
           type="text"
           id="email"
           placeholder="Digite aqui o seu email"
+          className="inputRegister"
           {...register("email")}
         />
         <p>{errors.email?.message}</p>
@@ -69,6 +72,7 @@ export const FormRegister = () => {
           type="text"
           id="cellphone"
           placeholder="Digite aqui o seu telefone"
+          className="inputRegister"
           {...register("cellphone")}
         />
         <p>{errors.cellphone?.message}</p>
@@ -77,6 +81,7 @@ export const FormRegister = () => {
           type="password"
           id="password"
           placeholder="Digite aqui a sua senha"
+          className="inputRegister"
           {...register("password")}
         />
         <p>{errors.password?.message}</p>
@@ -85,6 +90,7 @@ export const FormRegister = () => {
           type="password"
           id="confirmPassword"
           placeholder="Digite novamente a sua senha"
+          className="inputRegister"
           {...register("confirmPassword")}
         />
         <p>{errors.confirmPassword?.message}</p>

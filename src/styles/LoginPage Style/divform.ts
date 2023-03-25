@@ -97,5 +97,6 @@ export const DivForm = styled.div`
     color: red;
     font-size: 13px;
     margin-top: -15px;
+    font-weight: bold;
   }
 `;
