@@ -10,7 +10,9 @@ export const Dashboard = () => {
   return (
     <div>
       <HeaderRegister>
-        <h1>Eu sou a Dashboard</h1>
+        <h1>
+          Gerenciador de <span>Contatos</span>
+        </h1>
         <div>
           <Link to={"/"} onClick={clear}>
             Sair

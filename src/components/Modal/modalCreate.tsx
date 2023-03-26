@@ -15,12 +15,9 @@ const schema = yup.object({
 });
 
 export const ModalComponent = () => {
-  const { modalVisible, setModalVisible, registerContact } =
-    useContext(UserContext);
+  const { setModalVisible, registerContact } = useContext(UserContext);
 
   const closeModal = () => setModalVisible(false);
-
-  console.log(modalVisible);
 
   const {
     register,

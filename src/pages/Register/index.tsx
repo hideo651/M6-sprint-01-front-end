@@ -7,7 +7,9 @@ export const RegisterPage = () => {
   return (
     <div>
       <HeaderRegister>
-        <h1>Gerenciador de Contatos</h1>
+        <h1>
+          Gerenciador de <span>Contatos</span>
+        </h1>
         <div>
           <Link to={"/"}>Voltar</Link>
         </div>

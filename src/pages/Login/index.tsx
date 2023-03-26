@@ -8,7 +8,9 @@ export const LoginPage = () => {
   return (
     <>
       <Header>
-        <h1>Gerenciador de Contatos</h1>
+        <h1>
+          Gerenciador de <span>Contatos</span>
+        </h1>
       </Header>
       <DivForm>
         <FormLogin />

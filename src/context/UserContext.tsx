@@ -81,7 +81,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
           const response = await Api.get("/users");
           setUser(response.data);
           setContactExist(response.data.contacts);
-          // console.log(response.data.contacts);
         } catch (error: any) {
           console.log(error.response.data);
         }
@@ -112,15 +111,12 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   };
 
   const registerContact = async (data: IcontactCreate) => {
-    setModalVisible(false);
-
     const token = localStorage.getItem("@userToken:token");
 
     try {
       Api.defaults.headers.authorization = `Bearer ${token}`;
 
       const response = await Api.post("/contact", data);
-      console.log(response.data);
 
       const newContact = {
         id: response.data.id,
@@ -134,7 +130,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       const newData = [...contactExist, newContact];
 
       setContactExist(newData);
-      console.log(contactExist);
+      setModalVisible(false);
     } catch (error: any) {
       toast.error(`${error.response.data.message}`);
     }
@@ -147,7 +143,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       Api.defaults.headers.authorization = `Bearer ${token}`;
 
       const response = await Api.delete(`/contact/${contactId}`);
-      toast.success("Coontato removido");
+      toast.success("Contato removido");
 
       const newListContact = contactExist?.filter(
         (contact: Icontacts) => contact.id !== contactId

@@ -27,4 +27,8 @@ export const HeaderRegister = styled.header`
   h1 {
     color: white;
   }
+
+  span {
+    color: #ff1493;
+  }
 `;

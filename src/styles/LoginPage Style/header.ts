@@ -8,4 +8,8 @@ export const Header = styled.header`
     text-align: center;
     color: white;
   }
+
+  span {
+    color: #ff1493;
+  }
 `;
