@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import { Iuser, UserContext } from "../../../context/UserContext";
-import { fakeApi } from "../../../services/FakeApi";
 import { DivDashboard } from "../../../styles/DashboardPage Style/divDashboard";
 import { Main } from "../../../styles/DashboardPage Style/main";
 import { ModalComponent } from "../../Modal/modalCreate";

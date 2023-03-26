@@ -12,6 +12,7 @@ interface IuserContext {
   loginUser: (data: IloginUser) => void;
 
   registerContact: (data: IcontactCreate) => void;
+  deleteContact: (data: string) => void;
   setModalVisible: (data: boolean) => void;
   modalVisible: boolean;
   user: Iuser | undefined;
@@ -69,8 +70,6 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const [contactExist, setContactExist] = useState([] as Icontacts[]);
   const [update, setUpdate] = useState<number>(1);
 
-  console.log(contactExist);
-
   useEffect(() => {
     const getUser = async (): Promise<void> => {
       const token = localStorage.getItem("@userToken:token");
@@ -105,6 +104,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       const response = await Api.post<Idata>("/login", data);
       localStorage.setItem("@userToken:token", response.data.token);
       navigate("/dashboard");
+      setUpdate(update + 1);
     } catch (error: any) {
       console.log(error.response.data);
       toast.error(`${error.response.data.message}`);
@@ -140,6 +140,24 @@ export const UserProvider = ({ children }: iUserContextProps) => {
     }
   };
 
+  const deleteContact = async (contactId: string) => {
+    const token = localStorage.getItem("@userToken:token");
+
+    try {
+      Api.defaults.headers.authorization = `Bearer ${token}`;
+
+      const response = await Api.delete(`/contact/${contactId}`);
+      toast.success("Coontato removido");
+
+      const newListContact = contactExist?.filter(
+        (contact: Icontacts) => contact.id !== contactId
+      );
+      setContactExist(newListContact);
+    } catch (error: any) {
+      console.log(error.data.message);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -151,6 +169,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         contactExist,
         registerContact,
         loading,
+        deleteContact,
       }}
     >
       {children}

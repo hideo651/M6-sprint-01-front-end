@@ -3,15 +3,17 @@ import { Outlet, Navigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 export const ProtectedRoutes = () => {
-  const { user, loading } = useContext(UserContext);
+  const { loading } = useContext(UserContext);
+
+  const token = localStorage.getItem("@userToken:token");
 
   if (loading) {
     return (
       <div className="carregando">
-        <h1>Carregando</h1>
+        <h1>Carregando...</h1>
       </div>
     );
   }
 
-  return user ? <Outlet /> : <Navigate to={"/"} />;
+  return token ? <Outlet /> : <Navigate to={"/"} />;
 };

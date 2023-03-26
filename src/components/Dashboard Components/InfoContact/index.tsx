@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import trash02 from "../../../assets/trash02.svg";
+import { UserContext } from "../../../context/UserContext";
 
 interface IDataContact {
   data: {
@@ -13,6 +15,10 @@ interface IDataContact {
 }
 
 export const InfoContact = ({ data }: IDataContact) => {
+  const { deleteContact } = useContext(UserContext);
+
+  const deletar = (idContact: string) => deleteContact(idContact);
+
   return (
     <>
       <li>
@@ -24,7 +30,7 @@ export const InfoContact = ({ data }: IDataContact) => {
           <p>E-mail: {data.email}</p>
           <div></div>
         </div>
-        <button className="btnDelete">
+        <button className="btnDelete" onClick={() => deletar(data.id)}>
           <img src={trash02} alt="" />
         </button>
       </li>
