@@ -1,17 +1,16 @@
 import { useContext, useEffect } from "react";
-import { UserContext } from "../../../context/UserContext";
+import { Iuser, UserContext } from "../../../context/UserContext";
 import { fakeApi } from "../../../services/FakeApi";
 import { DivDashboard } from "../../../styles/DashboardPage Style/divDashboard";
 import { Main } from "../../../styles/DashboardPage Style/main";
+import { ModalComponent } from "../../Modal/modalCreate";
 import { InfoContact } from "../InfoContact";
 
 export const DashboardMain = () => {
-  const { getUser } = useContext(UserContext);
-  const user = fakeApi;
+  const { modalVisible, setModalVisible, user, contactExist } =
+    useContext(UserContext);
 
-  const cliquei = () => {
-    console.log("fui clicado");
-  };
+  const openModal = () => setModalVisible(true);
 
   // useEffect(() => {
   //   getUser();
@@ -27,19 +26,20 @@ export const DashboardMain = () => {
         <Main>
           <div className="tecnologia">
             <h3>Adicionar contatos</h3>
-            <button onClick={cliquei}>+</button>
+            <button onClick={openModal}>+</button>
           </div>
           <ul>
-            {user.contacts.length === 0 ? (
+            {contactExist.length === 0 ? (
               <span className="semTec"> Nenhum contato adicionado</span>
             ) : (
-              user.contacts.map((data, index) => (
+              contactExist.map((data, index) => (
                 <InfoContact data={data} key={index} />
               ))
             )}
           </ul>
         </Main>
       </DivDashboard>
+      {modalVisible ? <ModalComponent /> : <></>}
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { Route } from "react-router";
 import { Routes } from "react-router-dom";
+import { ProtectedRoutes } from "../components/ProtectedRoute";
 import { Dashboard } from "../pages/Dashboard";
 import { LoginPage } from "../pages/Login";
 import { RegisterPage } from "../pages/Register";
@@ -7,9 +8,9 @@ import { RegisterPage } from "../pages/Register";
 export const RoutesApp = () => {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />}></Route>
-      <Route path="/register" element={<RegisterPage />}></Route>
-      <Route path="/dashboard" element={<Dashboard />}></Route>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 };

@@ -1,21 +1,3 @@
-export interface Idata {
-  id: string;
-  name: string;
-  email: string;
-  cellphone: string;
-  createdAt: string;
-  contacts: [Icontacts];
-}
-
-export interface Icontacts {
-  id: string;
-  name: string;
-  email: string;
-  cellphone: string;
-  isActive: boolean;
-  createdAt: string;
-}
-
 export const fakeApi = {
   id: "a4cf6d25-e82b-4557-b821-9148f91258f8",
   name: "Bolacha3",

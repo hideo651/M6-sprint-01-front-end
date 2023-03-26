@@ -3,12 +3,18 @@ import { DashboardMain } from "../../components/Dashboard Components/DashboardMa
 import { HeaderRegister } from "../../styles/RegisterPage Style/header";
 
 export const Dashboard = () => {
+  function clear() {
+    localStorage.clear();
+  }
+
   return (
     <div>
       <HeaderRegister>
         <h1>Eu sou a Dashboard</h1>
         <div>
-          <Link to={"/"}>Sair</Link>
+          <Link to={"/"} onClick={clear}>
+            Sair
+          </Link>
         </div>
       </HeaderRegister>
       <DashboardMain />
