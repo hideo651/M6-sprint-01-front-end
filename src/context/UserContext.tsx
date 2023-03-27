@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { Api } from "../services/Api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { IContactEdit } from "../components/Modal/modalEdit";
 
 interface iUserContextProps {
   children: React.ReactNode;
@@ -13,11 +14,17 @@ interface IuserContext {
 
   registerContact: (data: IcontactCreate) => void;
   deleteContact: (data: string) => void;
+  updateContact: (data: IContactEdit) => void;
+
   setModalVisible: (data: boolean) => void;
+  setModalEdit: (data: boolean) => void;
+  setContactId: (data: string) => void;
   modalVisible: boolean;
+  modalEdit: boolean;
   user: Iuser | undefined;
   contactExist: Icontacts[];
   loading: boolean;
+  contactId: string;
 }
 export interface Iuser {
   id: string;
@@ -66,8 +73,10 @@ export const UserProvider = ({ children }: iUserContextProps) => {
 
   const [loading, setLoading] = useState<boolean>(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
   const [user, setUser] = useState<Iuser | undefined>(undefined);
   const [contactExist, setContactExist] = useState([] as Icontacts[]);
+  const [contactId, setContactId] = useState("");
   const [update, setUpdate] = useState<number>(1);
 
   useEffect(() => {
@@ -93,6 +102,8 @@ export const UserProvider = ({ children }: iUserContextProps) => {
   const registerUser = async (data: IuserRegister): Promise<void> => {
     try {
       const response = await Api.post<any>("/users", data);
+      navigate("/");
+      toast.success("Cadastro realizado com sucesso", { autoClose: 2000 });
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -104,6 +115,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       localStorage.setItem("@userToken:token", response.data.token);
       navigate("/dashboard");
       setUpdate(update + 1);
+      toast.success("Seja bem vindo!", { autoClose: 2000 });
     } catch (error: any) {
       console.log(error.response.data);
       toast.error(`${error.response.data.message}`);
@@ -149,8 +161,24 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         (contact: Icontacts) => contact.id !== contactId
       );
       setContactExist(newListContact);
+      setModalEdit(false);
     } catch (error: any) {
-      console.log(error.data.message);
+      toast.error(`${error.response.data.message}`);
+      console.log(error.response.data.message);
+    }
+  };
+
+  const updateContact = async (data: IContactEdit) => {
+    const token = localStorage.getItem("@userToken:token");
+
+    try {
+      Api.defaults.headers.authorization = `Bearer ${token}`;
+      const response = await Api.patch(`/contact/${contactId}`, data);
+      setUpdate(update + 1);
+      setModalEdit(false);
+    } catch (error: any) {
+      toast.error(`${error.response.data.message}`);
+      console.log(error.response.data.message);
     }
   };
 
@@ -166,6 +194,11 @@ export const UserProvider = ({ children }: iUserContextProps) => {
         registerContact,
         loading,
         deleteContact,
+        setModalEdit,
+        modalEdit,
+        contactId,
+        setContactId,
+        updateContact,
       }}
     >
       {children}
