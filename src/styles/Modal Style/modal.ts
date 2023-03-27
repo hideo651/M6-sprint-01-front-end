@@ -49,7 +49,7 @@ export const Modal = styled.div`
 
   .modalCorpoEdit {
     width: 350px;
-    height: 356px;
+    height: 483px;
     border-radius: 8px;
     background-color: #212529;
     position: relative;
@@ -108,6 +108,7 @@ export const Modal = styled.div`
     border-radius: 4px;
     font-size: 16px;
     width: 140px;
+    margin-top: 40px;
   }
 
   .editar {
@@ -125,6 +126,16 @@ export const Modal = styled.div`
   .spanTechName {
     height: 40px;
     padding: 7px;
+    border-radius: 4px;
+    border: 2px solid #f8f9fa;
+    background: #343b41;
+    color: #f8f9fa;
+    outline: 0;
+  }
+
+  .inputEdit {
+    height: 20px;
+    padding: 10px;
     border-radius: 4px;
     border: 2px solid #f8f9fa;
     background: #343b41;

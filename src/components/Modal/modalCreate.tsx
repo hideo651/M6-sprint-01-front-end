@@ -10,7 +10,7 @@ const schema = yup.object({
   email: yup
     .string()
     .email("Informe um email válido")
-    .required("Informe um emmail"),
+    .required("Informe um email"),
   cellphone: yup.string().required("Informe o telefone do contato"),
 });
 
@@ -62,7 +62,7 @@ export const ModalComponent = () => {
               />
               <p>{errors.cellphone?.message}</p>
               <button type="submit" className="btnCadastrar">
-                Cadastrar tecnologia
+                Cadastrar contato
               </button>
             </form>
           </div>

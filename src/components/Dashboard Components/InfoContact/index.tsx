@@ -15,7 +15,14 @@ interface IDataContact {
 }
 
 export const InfoContact = ({ data }: IDataContact) => {
-  const { deleteContact } = useContext(UserContext);
+  const { deleteContact, setModalEdit, setContactId, contactId } =
+    useContext(UserContext);
+
+  const openModal = async () => {
+    setModalEdit(true);
+    setContactId(data.id);
+    console.log(data.id);
+  };
 
   const deletar = (idContact: string) => deleteContact(idContact);
 
@@ -30,7 +37,7 @@ export const InfoContact = ({ data }: IDataContact) => {
           <p>E-mail: {data.email}</p>
           <div></div>
         </div>
-        <button className="btnDelete" onClick={() => deletar(data.id)}>
+        <button className="btnDelete" onClick={openModal}>
           <img src={trash02} alt="" />
         </button>
       </li>

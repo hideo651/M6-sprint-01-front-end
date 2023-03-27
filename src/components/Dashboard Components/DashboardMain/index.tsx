@@ -3,10 +3,11 @@ import { Iuser, UserContext } from "../../../context/UserContext";
 import { DivDashboard } from "../../../styles/DashboardPage Style/divDashboard";
 import { Main } from "../../../styles/DashboardPage Style/main";
 import { ModalComponent } from "../../Modal/modalCreate";
+import { ModalEdit } from "../../Modal/modalEdit";
 import { InfoContact } from "../InfoContact";
 
 export const DashboardMain = () => {
-  const { modalVisible, setModalVisible, user, contactExist } =
+  const { modalVisible, setModalVisible, user, contactExist, modalEdit } =
     useContext(UserContext);
 
   const openModal = () => setModalVisible(true);
@@ -39,6 +40,7 @@ export const DashboardMain = () => {
         </Main>
       </DivDashboard>
       {modalVisible ? <ModalComponent /> : <></>}
+      {modalEdit ? <ModalEdit /> : <></>}
     </>
   );
 };
