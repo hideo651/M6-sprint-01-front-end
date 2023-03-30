@@ -105,6 +105,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       navigate("/");
       toast.success("Cadastro realizado com sucesso", { autoClose: 2000 });
     } catch (error: any) {
+      toast.error(`${error.response.data.message}`);
       console.log(error.response.data);
     }
   };
@@ -155,7 +156,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       Api.defaults.headers.authorization = `Bearer ${token}`;
 
       const response = await Api.delete(`/contact/${contactId}`);
-      toast.success("Contato removido");
+      toast.success("Contato removido", { autoClose: 2000 });
 
       const newListContact = contactExist?.filter(
         (contact: Icontacts) => contact.id !== contactId
@@ -163,7 +164,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       setContactExist(newListContact);
       setModalEdit(false);
     } catch (error: any) {
-      toast.error(`${error.response.data.message}`);
+      toast.error(`${error.response.data.message}`, { autoClose: 2000 });
       console.log(error.response.data.message);
     }
   };
@@ -177,7 +178,7 @@ export const UserProvider = ({ children }: iUserContextProps) => {
       setUpdate(update + 1);
       setModalEdit(false);
     } catch (error: any) {
-      toast.error(`${error.response.data.message}`);
+      toast.error(`${error.response.data.message}`, { autoClose: 2000 });
       console.log(error.response.data.message);
     }
   };
