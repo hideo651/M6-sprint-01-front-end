@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { Iuser, UserContext } from "../../../context/UserContext";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 import { DivDashboard } from "../../../styles/DashboardPage Style/divDashboard";
 import { Main } from "../../../styles/DashboardPage Style/main";
 import { ModalComponent } from "../../Modal/modalCreate";
@@ -11,10 +11,6 @@ export const DashboardMain = () => {
     useContext(UserContext);
 
   const openModal = () => setModalVisible(true);
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
 
   return (
     <>
